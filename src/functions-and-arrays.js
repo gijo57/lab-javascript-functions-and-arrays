@@ -7,16 +7,13 @@ function maxOfTwoNumbers(a, b) {
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
 function findLongestWord(words) {
-  if (!words.length) {
-    return null;
-  }
   let longest = words[0];
   words.forEach((word) => {
     if (word.length > longest.length) {
       longest = word;
     }
   });
-  return longest;
+  return longest || null;
 }
 
 // Iteration #3: Calculate the sum
@@ -66,9 +63,6 @@ function averageWordLength(words) {
 
 // Bonus - Iteration #4.1
 function avg(arr) {
-  if (!arr.length) {
-    return null;
-  }
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
     if (typeof arr[i] === 'string') {
@@ -77,7 +71,7 @@ function avg(arr) {
       sum += arr[i];
     }
   }
-  return Math.round((sum / arr.length + Number.EPSILON) * 100) / 100;
+  return Math.round((sum / arr.length + Number.EPSILON) * 100) / 100 || null;
 }
 
 // Iteration #5: Unique arrays
@@ -167,7 +161,43 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct(matrix) {}
+let matrix2 = [
+  [1, 2, 3, 4, 5],
+  [1, 20, 3, 4, 5],
+  [1, 20, 3, 4, 5],
+  [1, 20, 3, 4, 5],
+  [1, 4, 3, 4, 5]
+];
+
+function greatestProduct(matrix) {
+  let greatestProduct = 0;
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      let arr = matrix[i].slice(j, j + 4);
+      let result = arr.reduce((acc, num) => acc * num, 1);
+      if (result > greatestProduct) {
+        greatestProduct = result;
+      }
+    }
+  }
+
+  let verticalArray = [];
+  for (let k = 0; k < matrix[0].length; k++) {
+    for (let l = 0; l < matrix[0].length; l++) {
+      if (verticalArray.length < 4) {
+        verticalArray.push(matrix[l][k]);
+      } else {
+        let result = verticalArray.reduce((acc, num) => acc * num, 1);
+        if (result > greatestProduct) {
+          greatestProduct = result;
+        }
+        verticalArray = [matrix[l][k]];
+      }
+    }
+  }
+  return greatestProduct;
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
