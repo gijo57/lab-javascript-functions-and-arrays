@@ -109,7 +109,12 @@ function doesWordExist(words, searchTerm) {
   if (!words.length) {
     return null;
   }
-  return words.includes(searchTerm);
+  for (let word of words) {
+    if (word === searchTerm) {
+      return true;
+    }
+  }
+  return false;
 }
 
 // Iteration #7: Count repetition
