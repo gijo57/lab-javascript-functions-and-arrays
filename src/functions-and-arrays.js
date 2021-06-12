@@ -186,21 +186,6 @@ function greatestProduct(matrix) {
       }
     }
   }
-
-  let verticalArray = [];
-  for (let k = 0; k < matrix[0].length; k++) {
-    for (let l = 0; l < matrix[0].length; l++) {
-      if (verticalArray.length < 4) {
-        verticalArray.push(matrix[l][k]);
-      } else {
-        let result = verticalArray.reduce((acc, num) => acc * num, 1);
-        if (result > greatestProduct) {
-          greatestProduct = result;
-        }
-        verticalArray = [matrix[l][k]];
-      }
-    }
-  }
   return greatestProduct;
 }
 
