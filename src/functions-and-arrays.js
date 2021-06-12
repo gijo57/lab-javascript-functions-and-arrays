@@ -133,7 +133,15 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(words, searchTerm) {
+  let count = 0;
+  for (let i = 0; i < words.length; i++) {
+    if (searchTerm === words[i]) {
+      count++;
+    }
+  }
+  return count;
+}
 
 // Iteration #8: Bonus
 const matrix = [
@@ -159,7 +167,7 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
